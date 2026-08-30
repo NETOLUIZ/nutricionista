@@ -103,7 +103,7 @@ export const PostDetailModal = ({ post, onClose }) => {
               </div>
 
               {post.functionalBenefits && (
-                <div style={{ padding: '14px 18px', borderRadius: '12px', backgroundColor: 'var(--secondary-faint)', border: '1px solid rgba(93, 107, 84, 0.15)', fontSize: '0.84rem', color: 'var(--secondary)' }}>
+                <div style={{ padding: '14px 18px', borderRadius: '12px', backgroundColor: 'var(--secondary-faint)', border: '1px solid rgba(92, 122, 82, 0.15)', fontSize: '0.84rem', color: 'var(--secondary)' }}>
                   <strong>🌿 Benefício Funcional:</strong> {post.functionalBenefits}
                 </div>
               )}

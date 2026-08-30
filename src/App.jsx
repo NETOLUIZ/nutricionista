@@ -32,18 +32,18 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ padding: '60px 20px', textAlign: 'center', backgroundColor: '#FAF7F2', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-          <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '2rem', color: '#935B47', marginBottom: '16px' }}>
+        <div style={{ padding: '60px 20px', textAlign: 'center', backgroundColor: '#FAFAF6', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '2rem', color: '#2E5E20', marginBottom: '16px' }}>
             Juliana Martins Nutrição
           </h2>
-          <p style={{ color: '#4E4642', maxWidth: '500px', marginBottom: '24px', lineHeight: 1.6 }}>
+          <p style={{ color: '#3E4A38', maxWidth: '500px', marginBottom: '24px', lineHeight: 1.6 }}>
             Ocorreu um pequeno ajuste na inicialização da página. Clique no botão abaixo para recarregar com segurança.
           </p>
           <button
             onClick={() => window.location.reload()}
             style={{
               padding: '14px 28px',
-              backgroundColor: '#935B47',
+              backgroundColor: '#2E5E20',
               color: '#FFFFFF',
               border: 'none',
               borderRadius: '9999px',

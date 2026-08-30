@@ -48,7 +48,7 @@ export const PortalPreview = ({ onOpenBooking }) => {
             padding: '36px',
             borderRadius: '32px',
             backgroundColor: '#FFFFFF',
-            boxShadow: '0 24px 64px rgba(37, 31, 28, 0.08)'
+            boxShadow: '0 24px 64px rgba(26, 42, 22, 0.08)'
           }}
         >
           {/* Navegação de Abas do Portal */}
@@ -146,7 +146,7 @@ export const PortalPreview = ({ onOpenBooking }) => {
           {/* Conteúdo da Aba 2: Rastreamento Metabólico Pontuado */}
           {activeTab === 'questionnaire' && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div style={{ padding: '16px 20px', backgroundColor: 'var(--primary-faint)', borderRadius: '16px', border: '1px solid rgba(147, 91, 71, 0.15)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ padding: '16px 20px', backgroundColor: 'var(--primary-faint)', borderRadius: '16px', border: '1px solid rgba(46, 94, 32, 0.15)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <span style={{ fontWeight: 600, color: 'var(--primary)', fontSize: '0.92rem' }}>Questionário de Rastreamento Metabólico (QRM)</span>
                   <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', margin: 0 }}>Classifique a intensidade dos sintomas de 0 (nunca) a 4 (frequente e grave):</p>
@@ -218,11 +218,11 @@ export const PortalPreview = ({ onOpenBooking }) => {
                 {/* Visual Representation of Progress Bar */}
                 <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', height: '140px', paddingTop: '20px' }}>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                    <div style={{ width: '38px', height: '110px', backgroundColor: 'rgba(147, 91, 71, 0.3)', borderRadius: '8px' }} />
+                    <div style={{ width: '38px', height: '110px', backgroundColor: 'rgba(46, 94, 32, 0.3)', borderRadius: '8px' }} />
                     <span style={{ fontSize: '0.75rem' }}>Mês 1</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
-                    <div style={{ width: '38px', height: '95px', backgroundColor: 'rgba(147, 91, 71, 0.6)', borderRadius: '8px' }} />
+                    <div style={{ width: '38px', height: '95px', backgroundColor: 'rgba(46, 94, 32, 0.6)', borderRadius: '8px' }} />
                     <span style={{ fontSize: '0.75rem' }}>Mês 2</span>
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>

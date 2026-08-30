@@ -34,7 +34,7 @@ export const Hero = ({ onOpenBooking }) => {
           width: '550px',
           height: '550px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(235, 217, 199, 0.45) 0%, rgba(250, 247, 242, 0) 70%)',
+          background: 'radial-gradient(circle, rgba(232, 240, 210, 0.45) 0%, rgba(250, 250, 246, 0) 70%)',
           pointerEvents: 'none',
           zIndex: 0
         }}
@@ -47,7 +47,7 @@ export const Hero = ({ onOpenBooking }) => {
           width: '450px',
           height: '450px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(93, 107, 84, 0.12) 0%, rgba(250, 247, 242, 0) 70%)',
+          background: 'radial-gradient(circle, rgba(92, 122, 82, 0.12) 0%, rgba(250, 250, 246, 0) 70%)',
           pointerEvents: 'none',
           zIndex: 0
         }}
@@ -139,7 +139,7 @@ export const Hero = ({ onOpenBooking }) => {
                 flexWrap: 'wrap',
                 gap: '20px',
                 paddingTop: '24px',
-                borderTop: '1px solid rgba(147, 91, 71, 0.12)'
+                borderTop: '1px solid rgba(46, 94, 32, 0.12)'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', color: 'var(--text-muted)' }}>
@@ -179,7 +179,7 @@ export const Hero = ({ onOpenBooking }) => {
                   position: 'absolute',
                   inset: '-14px -14px -14px -14px',
                   borderRadius: '38% 62% 63% 37% / 41% 44% 56% 59%',
-                  background: 'linear-gradient(135deg, rgba(235, 217, 199, 0.6) 0%, rgba(93, 107, 84, 0.15) 100%)',
+                  background: 'linear-gradient(135deg, rgba(232, 240, 210, 0.6) 0%, rgba(92, 122, 82, 0.15) 100%)',
                   zIndex: 0,
                   transform: 'rotate(-2deg)'
                 }}
@@ -191,7 +191,7 @@ export const Hero = ({ onOpenBooking }) => {
                   position: 'relative',
                   borderRadius: '32px',
                   overflow: 'hidden',
-                  boxShadow: '0 24px 64px rgba(60, 40, 30, 0.14)',
+                  boxShadow: '0 24px 64px rgba(26, 42, 22, 0.14)',
                   zIndex: 1,
                   border: '1px solid rgba(255, 255, 255, 0.8)'
                 }}
@@ -231,7 +231,7 @@ export const Hero = ({ onOpenBooking }) => {
                     width: '42px',
                     height: '42px',
                     borderRadius: '50%',
-                    backgroundColor: 'rgba(147, 91, 71, 0.12)',
+                    backgroundColor: 'rgba(46, 94, 32, 0.12)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

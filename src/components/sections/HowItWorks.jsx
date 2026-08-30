@@ -79,7 +79,7 @@ export const HowItWorks = ({ onOpenBooking }) => {
                     fontFamily: 'var(--font-serif)',
                     fontSize: '3.5rem',
                     fontWeight: 700,
-                    color: 'rgba(147, 91, 71, 0.15)',
+                    color: 'rgba(46, 94, 32, 0.15)',
                     lineHeight: 1,
                     marginBottom: '12px'
                   }}
@@ -99,7 +99,7 @@ export const HowItWorks = ({ onOpenBooking }) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     marginBottom: '20px',
-                    border: '1px solid rgba(147, 91, 71, 0.1)'
+                    border: '1px solid rgba(46, 94, 32, 0.1)'
                   }}
                 >
                   <Icon size={22} />

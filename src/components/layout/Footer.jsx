@@ -12,11 +12,11 @@ export const Footer = ({ onOpenLegal }) => {
   return (
     <footer
       style={{
-        backgroundColor: '#221A17',
-        color: '#E8E1DA',
+        backgroundColor: '#1A2A16',
+        color: '#D8E0D2',
         paddingTop: '80px',
         paddingBottom: '36px',
-        borderTop: '1px solid rgba(235, 217, 199, 0.1)',
+        borderTop: '1px solid rgba(232, 240, 210, 0.1)',
         position: 'relative'
       }}
     >
@@ -37,7 +37,7 @@ export const Footer = ({ onOpenLegal }) => {
                   fontFamily: 'var(--font-serif)',
                   fontSize: '1.65rem',
                   fontWeight: 600,
-                  color: '#FAF7F2',
+                  color: '#FAFAF6',
                   display: 'block'
                 }}
               >
@@ -61,7 +61,7 @@ export const Footer = ({ onOpenLegal }) => {
             <p
               style={{
                 fontSize: '0.9rem',
-                color: '#BDB4AC',
+                color: '#AEB8A8',
                 lineHeight: 1.7,
                 marginBottom: '20px'
               }}
@@ -75,9 +75,9 @@ export const Footer = ({ onOpenLegal }) => {
                 alignItems: 'center',
                 gap: '8px',
                 padding: '6px 14px',
-                background: 'rgba(201, 150, 101, 0.12)',
+                background: 'rgba(167, 201, 87, 0.12)',
                 borderRadius: 'var(--radius-pill)',
-                border: '1px solid rgba(201, 150, 101, 0.25)',
+                border: '1px solid rgba(167, 201, 87, 0.25)',
                 fontSize: '0.78rem',
                 color: 'var(--accent-champagne)'
               }}
@@ -93,7 +93,7 @@ export const Footer = ({ onOpenLegal }) => {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: '1.15rem',
-                color: '#FAF7F2',
+                color: '#FAFAF6',
                 marginBottom: '20px',
                 letterSpacing: '0.02em'
               }}
@@ -114,13 +114,13 @@ export const Footer = ({ onOpenLegal }) => {
                   <a
                     href={item.href}
                     style={{
-                      color: '#BDB4AC',
+                      color: '#AEB8A8',
                       textDecoration: 'none',
                       fontSize: '0.9rem',
                       transition: 'var(--transition)'
                     }}
                     onMouseEnter={(e) => (e.target.style.color = 'var(--accent-gold)')}
-                    onMouseLeave={(e) => (e.target.style.color = '#BDB4AC')}
+                    onMouseLeave={(e) => (e.target.style.color = '#AEB8A8')}
                   >
                     {item.label}
                   </a>
@@ -135,14 +135,14 @@ export const Footer = ({ onOpenLegal }) => {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: '1.15rem',
-                color: '#FAF7F2',
+                color: '#FAFAF6',
                 marginBottom: '20px',
                 letterSpacing: '0.02em'
               }}
             >
               Atendimento
             </h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '0.88rem', color: '#BDB4AC' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '0.88rem', color: '#AEB8A8' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
                 <MapPin size={18} color="var(--accent-gold)" style={{ flexShrink: 0, marginTop: '2px' }} />
                 <span>Consultório Presencial & Teleconsulta Online para todo o Brasil e exterior</span>
@@ -170,7 +170,7 @@ export const Footer = ({ onOpenLegal }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#FAF7F2',
+                  color: '#FAFAF6',
                   textDecoration: 'none',
                   transition: 'var(--transition)',
                   border: '1px solid rgba(255, 255, 255, 0.12)'
@@ -200,7 +200,7 @@ export const Footer = ({ onOpenLegal }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#FAF7F2',
+                  color: '#FAFAF6',
                   textDecoration: 'none',
                   transition: 'var(--transition)',
                   border: '1px solid rgba(255, 255, 255, 0.12)'
@@ -226,14 +226,14 @@ export const Footer = ({ onOpenLegal }) => {
               style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: '1.15rem',
-                color: '#FAF7F2',
+                color: '#FAFAF6',
                 marginBottom: '20px',
                 letterSpacing: '0.02em'
               }}
             >
               Privacidade & Segurança
             </h4>
-            <p style={{ fontSize: '0.85rem', color: '#A89F97', lineHeight: 1.6, marginBottom: '16px' }}>
+            <p style={{ fontSize: '0.85rem', color: '#A3AD9E', lineHeight: 1.6, marginBottom: '16px' }}>
               Garantia de sigilo profissional médico-nutricional e total conformidade com a LGPD (Lei nº 13.709/2018) no tratamento de dados sensíveis de saúde.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -295,7 +295,7 @@ export const Footer = ({ onOpenLegal }) => {
             justifyContent: 'space-between',
             gap: '16px',
             fontSize: '0.82rem',
-            color: '#8E857E'
+            color: '#8B9486'
           }}
         >
           <div>
@@ -315,7 +315,7 @@ export const Footer = ({ onOpenLegal }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: '#FAF7F2',
+                color: '#FAFAF6',
                 cursor: 'pointer',
                 transition: 'var(--transition)'
               }}

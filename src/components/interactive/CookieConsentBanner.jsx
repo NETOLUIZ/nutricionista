@@ -31,8 +31,8 @@ export const CookieConsentBanner = ({ onOpenPrivacy }) => {
         backgroundColor: '#FFFFFF',
         borderRadius: '20px',
         padding: '20px 24px',
-        boxShadow: '0 16px 48px rgba(37, 31, 28, 0.15)',
-        border: '1px solid rgba(147, 91, 71, 0.15)',
+        boxShadow: '0 16px 48px rgba(26, 42, 22, 0.15)',
+        border: '1px solid rgba(46, 94, 32, 0.15)',
         zIndex: 900,
         animation: 'fadeIn 0.3s ease-out'
       }}

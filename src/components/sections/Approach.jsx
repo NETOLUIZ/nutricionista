@@ -96,7 +96,7 @@ export const Approach = () => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       color: card.accentColor,
-                      border: '1px solid rgba(147, 91, 71, 0.1)'
+                      border: '1px solid rgba(46, 94, 32, 0.1)'
                     }}
                   >
                     <Icon size={24} />

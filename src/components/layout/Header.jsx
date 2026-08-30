@@ -52,8 +52,8 @@ export const Header = ({ onOpenBooking }) => {
         transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         backdropFilter: isScrolled ? 'blur(16px)' : 'none',
         WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
-        backgroundColor: isScrolled ? 'rgba(250, 247, 242, 0.92)' : 'transparent',
-        borderBottom: isScrolled ? '1px solid rgba(147, 91, 71, 0.1)' : '1px solid transparent'
+        backgroundColor: isScrolled ? 'rgba(250, 250, 246, 0.92)' : 'transparent',
+        borderBottom: isScrolled ? '1px solid rgba(46, 94, 32, 0.1)' : '1px solid transparent'
       }}
     >
       <div className="container">
@@ -149,8 +149,8 @@ export const Header = ({ onOpenBooking }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: 'rgba(147, 91, 71, 0.08)',
-                border: '1px solid rgba(147, 91, 71, 0.15)',
+                background: 'rgba(46, 94, 32, 0.08)',
+                border: '1px solid rgba(46, 94, 32, 0.15)',
                 borderRadius: '50%',
                 width: '42px',
                 height: '42px',
@@ -174,7 +174,7 @@ export const Header = ({ onOpenBooking }) => {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(250, 247, 242, 0.98)',
+            backgroundColor: 'rgba(250, 250, 246, 0.98)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             display: 'flex',
@@ -199,7 +199,7 @@ export const Header = ({ onOpenBooking }) => {
                   fontFamily: 'var(--font-serif)',
                   fontWeight: 500,
                   padding: '10px 0',
-                  borderBottom: '1px solid rgba(147, 91, 71, 0.08)',
+                  borderBottom: '1px solid rgba(46, 94, 32, 0.08)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between'

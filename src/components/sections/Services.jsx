@@ -56,7 +56,7 @@ export const Services = ({ onSelectServiceForBooking }) => {
                     borderRadius: 'var(--radius-pill)',
                     backgroundColor: 'var(--primary-faint)',
                     color: 'var(--primary)',
-                    border: '1px solid rgba(147, 91, 71, 0.15)'
+                    border: '1px solid rgba(46, 94, 32, 0.15)'
                   }}
                 >
                   {service.tag}

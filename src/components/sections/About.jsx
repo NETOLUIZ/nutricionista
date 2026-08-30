@@ -28,8 +28,8 @@ export const About = () => {
                 position: 'relative',
                 borderRadius: '28px',
                 overflow: 'hidden',
-                boxShadow: '0 20px 50px rgba(37, 31, 28, 0.08)',
-                border: '1px solid rgba(147, 91, 71, 0.1)'
+                boxShadow: '0 20px 50px rgba(26, 42, 22, 0.08)',
+                border: '1px solid rgba(46, 94, 32, 0.1)'
               }}
             >
               <img
@@ -54,7 +54,7 @@ export const About = () => {
                 width: '120px',
                 height: '120px',
                 borderRadius: '50%',
-                border: '2px dashed rgba(201, 150, 101, 0.4)',
+                border: '2px dashed rgba(167, 201, 87, 0.4)',
                 zIndex: 0,
                 pointerEvents: 'none'
               }}
@@ -110,7 +110,7 @@ export const About = () => {
                 gridTemplateColumns: 'repeat(3, 1fr)',
                 gap: '20px',
                 paddingTop: '28px',
-                borderTop: '1px solid rgba(147, 91, 71, 0.12)'
+                borderTop: '1px solid rgba(46, 94, 32, 0.12)'
               }}
             >
               {/* Stat 1 */}

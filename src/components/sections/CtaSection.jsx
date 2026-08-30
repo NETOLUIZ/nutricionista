@@ -7,8 +7,8 @@ export const CtaSection = ({ onOpenBooking }) => {
       style={{
         paddingTop: '120px',
         paddingBottom: '120px',
-        backgroundColor: '#261E1A',
-        color: '#FAF7F2',
+        backgroundColor: '#1A2A16',
+        color: '#FAFAF6',
         position: 'relative',
         overflow: 'hidden'
       }}
@@ -22,7 +22,7 @@ export const CtaSection = ({ onOpenBooking }) => {
           transform: 'translateX(-50%)',
           width: '700px',
           height: '500px',
-          background: 'radial-gradient(circle, rgba(201, 150, 101, 0.18) 0%, rgba(38, 30, 26, 0) 70%)',
+          background: 'radial-gradient(circle, rgba(167, 201, 87, 0.18) 0%, rgba(26, 42, 22, 0) 70%)',
           pointerEvents: 'none'
         }}
       />
@@ -37,8 +37,8 @@ export const CtaSection = ({ onOpenBooking }) => {
               gap: '8px',
               padding: '6px 16px',
               borderRadius: 'var(--radius-pill)',
-              backgroundColor: 'rgba(235, 217, 199, 0.12)',
-              border: '1px solid rgba(235, 217, 199, 0.2)',
+              backgroundColor: 'rgba(232, 240, 210, 0.12)',
+              border: '1px solid rgba(232, 240, 210, 0.2)',
               fontSize: '0.78rem',
               fontWeight: 600,
               letterSpacing: '0.08em',
@@ -57,7 +57,7 @@ export const CtaSection = ({ onOpenBooking }) => {
               fontSize: 'clamp(2.4rem, 4.5vw, 3.8rem)',
               fontWeight: 600,
               lineHeight: 1.15,
-              color: '#FAF7F2',
+              color: '#FAFAF6',
               marginBottom: '24px'
             }}
           >
@@ -67,7 +67,7 @@ export const CtaSection = ({ onOpenBooking }) => {
           <p
             style={{
               fontSize: 'clamp(1.1rem, 1.4vw, 1.25rem)',
-              color: '#D4CBC2',
+              color: '#CBD6C4',
               lineHeight: 1.7,
               marginBottom: '40px',
               fontFamily: 'var(--font-serif-cormorant)',
@@ -85,7 +85,7 @@ export const CtaSection = ({ onOpenBooking }) => {
                 fontSize: '1.05rem',
                 padding: '18px 40px',
                 backgroundColor: 'var(--primary)',
-                boxShadow: '0 8px 30px rgba(147, 91, 71, 0.4)'
+                boxShadow: '0 8px 30px rgba(46, 94, 32, 0.4)'
               }}
             >
               <Calendar size={18} />
@@ -101,7 +101,7 @@ export const CtaSection = ({ onOpenBooking }) => {
               justifyContent: 'center',
               gap: '24px',
               fontSize: '0.82rem',
-              color: '#A69E96',
+              color: '#A3AD9E',
               flexWrap: 'wrap'
             }}
           >

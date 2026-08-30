@@ -123,7 +123,7 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
                     height: '4px',
                     flexGrow: 1,
                     borderRadius: '2px',
-                    backgroundColor: s <= step ? 'var(--primary)' : 'rgba(147, 91, 71, 0.15)',
+                    backgroundColor: s <= step ? 'var(--primary)' : 'rgba(46, 94, 32, 0.15)',
                     transition: 'var(--transition)'
                   }}
                 />
@@ -373,7 +373,7 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
                 backgroundColor: 'var(--bg-main)',
                 padding: '12px 14px',
                 borderRadius: '12px',
-                border: '1px solid rgba(147, 91, 71, 0.15)',
+                border: '1px solid rgba(46, 94, 32, 0.15)',
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '10px'
