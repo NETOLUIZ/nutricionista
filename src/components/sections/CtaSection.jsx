@@ -29,7 +29,22 @@ export const CtaSection = ({ onOpenBooking }) => {
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center' }}>
-          
+
+          <img
+            src={`${import.meta.env.BASE_URL}images/juliana_cta.jpg`}
+            alt="Juliana Martins - Nutricionista Funcional"
+            loading="lazy"
+            style={{
+              width: '92px',
+              height: '92px',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              border: '2px solid var(--accent-gold)',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
+              marginBottom: '20px'
+            }}
+          />
+
           <div
             style={{
               display: 'inline-flex',

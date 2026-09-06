@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Clock, Check, ShieldCheck, ArrowRight, ArrowLeft, Sparkles, MapPin, Video } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { servicesData } from '../../data/servicesData';
+import { servicesData, formatPrice } from '../../data/servicesData';
 import { Modal } from '../ui/Modal';
 
 const WEEKDAY_LABELS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
@@ -71,7 +71,7 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
   const whatsappMessage = encodeURIComponent(
     `Olá Dra. Juliana! Acabei de solicitar meu agendamento pelo site.\n\n` +
     `*Nome:* ${patientData.name}\n` +
-    `*Serviço:* ${currentServiceObj.title}\n` +
+    `*Pacote:* ${currentServiceObj.name} (${formatPrice(currentServiceObj.price)})\n` +
     `*Modalidade:* ${modality === 'online' ? 'Teleconsulta Online' : 'Presencial'}\n` +
     `*Data/Hora:* ${selectedDate} às ${selectedTime}\n` +
     `*Objetivo:* ${patientData.goal || 'Saúde e Nutrição Funcional'}`
@@ -210,8 +210,8 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
                     }}
                   >
                     <div>
-                      <div style={{ fontWeight: 600, fontSize: '0.94rem', color: 'var(--text-main)' }}>{s.title}</div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{s.subtitle} • {s.duration}</div>
+                      <div style={{ fontWeight: 600, fontSize: '0.94rem', color: 'var(--text-main)' }}>{s.name}</div>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{formatPrice(s.price)}</div>
                     </div>
                     {selectedService === s.id && <Check size={18} color="var(--primary)" />}
                   </button>
@@ -418,7 +418,7 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
             </h4>
 
             <p style={{ fontSize: '0.92rem', color: 'var(--text-body)', lineHeight: 1.6, marginBottom: '24px' }}>
-              Olá <strong>{patientData.name}</strong>, sua consulta de <strong>{currentServiceObj.title}</strong> foi agendada para <strong>{selectedDate} às {selectedTime}</strong> ({modality === 'online' ? 'Teleconsulta Online' : 'Presencial'}).
+              Olá <strong>{patientData.name}</strong>, sua consulta do <strong>{currentServiceObj.name}</strong> foi agendada para <strong>{selectedDate} às {selectedTime}</strong> ({modality === 'online' ? 'Teleconsulta Online' : 'Presencial'}).
             </p>
 
             <a
