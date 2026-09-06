@@ -4,7 +4,7 @@ export const privacyPolicy = {
   sections: [
     {
       title: '1. Compromisso com a Privacidade e Sigilo Profissional',
-      content: `O consultório de Nutrição Clínica e Funcional Juliana Martins (CRN-4) tem o compromisso inegociável de resguardar a privacidade, a confidencialidade e a segurança de todos os dados pessoais e dados sensíveis de saúde de seus pacientes e visitantes, em estrita conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei Federal nº 13.709/2018 - LGPD) e com o Código de Ética e de Conduta do Nutricionista (Resolução CFN nº 599/2018).`
+      content: `O consultório de Nutrição Clínica e Funcional Juliana Martins (CRN-11) tem o compromisso inegociável de resguardar a privacidade, a confidencialidade e a segurança de todos os dados pessoais e dados sensíveis de saúde de seus pacientes e visitantes, em estrita conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei Federal nº 13.709/2018 - LGPD) e com o Código de Ética e de Conduta do Nutricionista (Resolução CFN nº 599/2018).`
     },
     {
       title: '2. Dados Coletados e Finalidade Específica',

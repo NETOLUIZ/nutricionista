@@ -30,7 +30,7 @@ export const testimonialsData = [
     id: 4,
     name: 'Rodrigo Fonseca',
     role: 'Praticante de Triatlo, 41 anos',
-    text: 'Buscava otimização de performance e controle inflamatório pós-treino. O ajuste fino de micronutrientes e a suplementação ortomolecular me deram uma recuperação muscular inacreditável. Melhor atendimento esportivo e clínico que já tive.',
+    text: 'Buscava otimização de performance e controle inflamatório pós-treino. O ajuste fino de micronutrientes e a suplementação personalizada me deram uma recuperação muscular inacreditável. Melhor atendimento esportivo e clínico que já tive.',
     rating: 5,
     tag: 'Nutrição Esportiva',
     timeAgo: 'Paciente há 1 ano e meio'

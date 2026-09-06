@@ -54,7 +54,7 @@ export const Footer = ({ onOpenLegal }) => {
                   marginTop: '2px'
                 }}
               >
-                Nutrição Funcional & Ortomolecular
+                Nutrição Funcional
               </span>
             </div>
 
@@ -83,7 +83,7 @@ export const Footer = ({ onOpenLegal }) => {
               }}
             >
               <ShieldCheck size={14} color="var(--accent-gold)" />
-              <span>Registro Profissional: CRN-4 18249/P</span>
+              <span>Registro Profissional: CRN-11 9588</span>
             </div>
           </div>
 

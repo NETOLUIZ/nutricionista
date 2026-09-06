@@ -99,7 +99,7 @@ export const About = () => {
                 Acredito que comer bem não deve ser um peso, uma fonte de culpa ou uma lista interminável de proibições. Meu propósito é te ajudar a recuperar o prazer de se alimentar com consciência, saúde e liberdade.
               </p>
               <p>
-                Com formação especializada em <strong>Nutrição Funcional e Ortomolecular</strong>, investigo a individualidade bioquímica de cada paciente: seu intestino, sua imunidade, seus níveis hormonais e a sua rotina real. Não entrego dietas prontas de gaveta — construímos juntos um estilo de vida sustentável.
+                Com formação especializada em <strong>Nutrição Funcional</strong>, investigo a individualidade bioquímica de cada paciente: seu intestino, sua imunidade, seus níveis hormonais e a sua rotina real. Não entrego dietas prontas de gaveta — construímos juntos um estilo de vida sustentável.
               </p>
             </div>
 

@@ -50,7 +50,7 @@ export const instagramPosts = [
       'Sintomas como estufamento crônico e névoa mental costumam andar juntos.',
       'Alimentos ricos em triptofano, magnésio e fibras são fundamentais para o equilíbrio do humor.'
     ],
-    fullContent: 'Na nutrição funcional e ortomolecular, investigamos a causa raiz da ansiedade e da fadiga. Pequenas modulações na microbiota e reposição de cofatores enzimáticos (vitaminas do complexo B, zinco e magnésio) transformam a clareza mental e a disposição.'
+    fullContent: 'Na nutrição funcional, investigamos a causa raiz da ansiedade e da fadiga. Pequenas modulações na microbiota e reposição de cofatores enzimáticos (vitaminas do complexo B, zinco e magnésio) transformam a clareza mental e a disposição.'
   },
   {
     id: 'post-4',
