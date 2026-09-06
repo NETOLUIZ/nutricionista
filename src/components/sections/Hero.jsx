@@ -14,13 +14,9 @@ export const Hero = ({ onOpenBooking }) => {
   return (
     <section
       id="inicio"
+      className="hero-section"
       style={{
         position: 'relative',
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        paddingTop: '130px',
-        paddingBottom: '80px',
         backgroundColor: 'var(--bg-main)',
         overflow: 'hidden'
       }}
@@ -276,6 +272,19 @@ export const Hero = ({ onOpenBooking }) => {
           </div>
         </div>
       </div>
+
+      <style>{`
+        .hero-section {
+          padding-top: 112px;
+          padding-bottom: 64px;
+        }
+        @media (min-width: 768px) {
+          .hero-section {
+            padding-top: 144px;
+            padding-bottom: 96px;
+          }
+        }
+      `}</style>
     </section>
   );
 };

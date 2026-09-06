@@ -43,17 +43,20 @@ export const Header = ({ onOpenBooking }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'glass-nav py-3.5 shadow-sm'
-          : 'bg-transparent py-5'
-      }`}
       style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        paddingTop: isScrolled ? '14px' : '20px',
+        paddingBottom: isScrolled ? '14px' : '20px',
         transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         backdropFilter: isScrolled ? 'blur(16px)' : 'none',
         WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
         backgroundColor: isScrolled ? 'rgba(250, 250, 246, 0.92)' : 'transparent',
-        borderBottom: isScrolled ? '1px solid rgba(46, 94, 32, 0.1)' : '1px solid transparent'
+        borderBottom: isScrolled ? '1px solid rgba(46, 94, 32, 0.1)' : '1px solid transparent',
+        boxShadow: isScrolled ? 'var(--shadow-sm)' : 'none'
       }}
     >
       <div className="container">
@@ -170,7 +173,7 @@ export const Header = ({ onOpenBooking }) => {
         <div
           style={{
             position: 'fixed',
-            top: '70px',
+            top: '84px',
             left: 0,
             right: 0,
             bottom: 0,
@@ -181,7 +184,7 @@ export const Header = ({ onOpenBooking }) => {
             flexDirection: 'column',
             padding: '30px 24px',
             gap: '20px',
-            zIndex: 49,
+            zIndex: 90,
             overflowY: 'auto',
             animation: 'fadeIn 0.25s ease-out'
           }}
