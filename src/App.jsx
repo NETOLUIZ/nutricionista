@@ -1,4 +1,6 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect, Component, lazy, Suspense } from 'react';
+import { SiteDataProvider } from './lib/SiteData';
+import { Highlights } from './components/sections/Highlights';
 import { Header } from './components/layout/Header';
 import { Hero } from './components/sections/Hero';
 import { About } from './components/sections/About';
@@ -60,7 +62,7 @@ class ErrorBoundary extends Component {
   }
 }
 
-export function App() {
+function PublicSite() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
   const [selectedBookingService, setSelectedBookingService] = useState(null);
   const [bookingRequestId, setBookingRequestId] = useState(0);
@@ -87,6 +89,9 @@ export function App() {
         <main>
           {/* 1. Hero Section */}
           <Hero onOpenBooking={() => handleOpenBooking()} />
+
+          {/* Banners e informativos publicados no painel */}
+          <Highlights />
 
           {/* 2. Sobre Mim */}
           <About />
@@ -139,6 +144,33 @@ export function App() {
         <CookieConsentBanner onOpenPrivacy={() => handleOpenLegal('privacy')} />
       </div>
     </ErrorBoundary>
+  );
+}
+
+const AdminApp = lazy(() => import('./admin/AdminApp'));
+
+const isAdminHash = () => window.location.hash.startsWith('#/admin');
+
+export function App() {
+  const [isAdmin, setIsAdmin] = useState(isAdminHash);
+
+  useEffect(() => {
+    const onHash = () => setIsAdmin(isAdminHash());
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+
+  if (isAdmin) {
+    return (
+      <Suspense fallback={null}>
+        <AdminApp />
+      </Suspense>
+    );
+  }
+  return (
+    <SiteDataProvider>
+      <PublicSite />
+    </SiteDataProvider>
   );
 }
 

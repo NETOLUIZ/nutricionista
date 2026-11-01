@@ -1,7 +1,9 @@
 import React from 'react';
 import { Calendar, Sparkles } from 'lucide-react';
+import { useSiteData } from '../../lib/SiteData';
 
 export const CtaSection = ({ onOpenBooking }) => {
+  const { texts } = useSiteData();
   return (
     <section
       style={{
@@ -76,7 +78,7 @@ export const CtaSection = ({ onOpenBooking }) => {
               marginBottom: '24px'
             }}
           >
-            Seu próximo passo pode começar hoje.
+            {texts.cta_title}
           </h2>
 
           <p
@@ -89,7 +91,7 @@ export const CtaSection = ({ onOpenBooking }) => {
               fontStyle: 'italic'
             }}
           >
-            "Vamos construir uma alimentação que faça sentido para você?"
+            "{texts.cta_subtitle}"
           </p>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>

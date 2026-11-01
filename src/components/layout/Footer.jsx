@@ -1,7 +1,9 @@
 import { MessageCircle, ShieldCheck, ArrowUp, MapPin, Mail, Clock } from 'lucide-react';
 import { InstagramIcon } from '../ui/InstagramIcon';
+import { useSiteData } from '../../lib/SiteData';
 
 export const Footer = ({ onOpenLegal }) => {
+  const { texts } = useSiteData();
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -189,7 +191,7 @@ export const Footer = ({ onOpenLegal }) => {
               </a>
 
               <a
-                href="https://wa.me/5585989500225?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20as%20consultas%20nutricionais."
+                href={`https://wa.me/${texts.whatsapp}?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20as%20consultas%20nutricionais.`}
                 target="_blank"
                 rel="noreferrer"
                 style={{

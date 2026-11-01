@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Clock, Check, ShieldCheck, ArrowRight, ArrowLeft, Sparkles, MapPin, Video } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { servicesData, formatPrice } from '../../data/servicesData';
+import { formatPrice } from '../../data/servicesData';
+import { useSiteData } from '../../lib/SiteData';
+import { api, hasApi } from '../../lib/api';
 import { Modal } from '../ui/Modal';
 
 const WEEKDAY_LABELS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
@@ -28,6 +30,7 @@ function getNextBusinessDays(count) {
 }
 
 export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
+  const { plans: servicesData, texts, paymentMethods } = useSiteData();
   const [step, setStep] = useState(1);
   const [selectedService, setSelectedService] = useState(initialServiceId || servicesData[0].id);
   const [modality, setModality] = useState('online'); // 'online' | 'presencial'
@@ -42,6 +45,16 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
     lgpdConsent: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookedTimes, setBookedTimes] = useState([]);
+
+  useEffect(() => {
+    if (!hasApi) return;
+    let active = true;
+    api(`/api/public/booked?date=${selectedDate}`)
+      .then((list) => active && setBookedTimes(list))
+      .catch(() => active && setBookedTimes([]));
+    return () => { active = false; };
+  }, [selectedDate]);
 
   const times = ['09:00', '10:30', '14:00', '15:30', '17:00', '18:15'];
 
@@ -52,7 +65,7 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
         return;
       }
       setIsSubmitting(true);
-      setTimeout(() => {
+      const finish = () => {
         setIsSubmitting(false);
         setStep(4);
         confetti({
@@ -60,7 +73,31 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
           spread: 70,
           origin: { y: 0.6 }
         });
-      }, 600);
+      };
+      if (!hasApi) {
+        setTimeout(finish, 600);
+        return;
+      }
+      api('/api/public/appointments', {
+        method: 'POST',
+        body: {
+          planId: selectedService,
+          modality,
+          date: selectedDate,
+          time: selectedTime,
+          patientName: patientData.name,
+          whatsapp: patientData.whatsapp,
+          email: patientData.email,
+          goal: patientData.goal,
+          lgpdConsent: patientData.lgpdConsent
+        }
+      })
+        .then(finish)
+        .catch((error) => {
+          setIsSubmitting(false);
+          alert(error.message);
+          if (error.status === 409) setStep(2);
+        });
     } else {
       setStep(prev => prev + 1);
     }
@@ -261,7 +298,10 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
                     key={t}
                     type="button"
                     onClick={() => setSelectedTime(t)}
+                    disabled={bookedTimes.includes(t)}
+                    aria-label={bookedTimes.includes(t) ? `${t} indisponível` : t}
                     style={{
+                      opacity: bookedTimes.includes(t) ? 0.4 : 1,
                       padding: '12px',
                       borderRadius: '12px',
                       border: `1.5px solid ${selectedTime === t ? 'var(--secondary)' : 'var(--border-subtle)'}`,
@@ -421,8 +461,17 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
               Olá <strong>{patientData.name}</strong>, sua consulta do <strong>{currentServiceObj.name}</strong> foi agendada para <strong>{selectedDate} às {selectedTime}</strong> ({modality === 'online' ? 'Teleconsulta Online' : 'Presencial'}).
             </p>
 
+            {paymentMethods?.length > 0 && (
+              <div style={{ textAlign: 'left', backgroundColor: 'var(--bg-main)', border: '1px solid var(--border-subtle)', borderRadius: '12px', padding: '14px 16px', marginBottom: '20px', fontSize: '0.86rem', color: 'var(--text-body)' }}>
+                <strong style={{ display: 'block', marginBottom: '6px', color: 'var(--text-main)' }}>Formas de pagamento aceitas</strong>
+                {paymentMethods.map((m) => (
+                  <div key={m.key}><strong>{m.label}</strong>{m.instructions ? ` — ${m.instructions}` : ''}</div>
+                ))}
+              </div>
+            )}
+
             <a
-              href={`https://wa.me/5585989500225?text=${whatsappMessage}`}
+              href={`https://wa.me/${texts.whatsapp}?text=${whatsappMessage}`}
               target="_blank"
               rel="noreferrer"
               className="btn-primary"

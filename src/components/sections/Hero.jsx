@@ -1,7 +1,9 @@
 import React from 'react';
 import { Sparkles, Calendar, ArrowRight, CheckCircle2, Heart, Leaf } from 'lucide-react';
+import { useSiteData, renderHighlight } from '../../lib/SiteData';
 
 export const Hero = ({ onOpenBooking }) => {
+  const { texts } = useSiteData();
   const scrollToAbout = (e) => {
     e.preventDefault();
     const element = document.querySelector('#sobre');
@@ -82,7 +84,7 @@ export const Hero = ({ onOpenBooking }) => {
                 marginBottom: '24px'
               }}
             >
-              Uma alimentação mais <span className="text-gradient" style={{ fontStyle: 'italic' }}>leve, saudável</span> e possível para você.
+              {renderHighlight(texts.hero_title)}
             </h1>
 
             {/* Texto de Apoio */}
@@ -95,7 +97,7 @@ export const Hero = ({ onOpenBooking }) => {
                 fontWeight: 400
               }}
             >
-              "Cuide da sua alimentação sem dietas impossíveis e construa uma rotina que realmente combina com a sua vida."
+              "{texts.hero_subtitle}"
             </p>
 
             {/* Botões de Ação */}

@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+model Plan {
+  id           String        @id // slug, ex: pacote-essencial
+  name         String
+  priceCents   Int
+  tagline      String        @default("")
+  popular      Boolean       @default(false)
+  features     String[]
+  active       Boolean       @default(true)
+  sortOrder    Int           @default(0)
+  appointments Appointment[]
+}
+
+model Appointment {
+  id            Int      @id @default(autoincrement())
+  plan          Plan?    @relation(fields: [planId], references: [id], onDelete: SetNull)
+  planId        String?
+  planName      String
+  priceCents    Int
+  modality      String // online | presencial
+  date          String // YYYY-MM-DD
+  time          String // HH:mm
+  patientName   String
+  whatsapp      String
+  email         String?
+  goal          String?
+  status        String   @default("PENDING") // PENDING | CONFIRMED | DONE | CANCELED
+  paymentStatus String   @default("UNPAID") // UNPAID | PAID
+  consentAt      DateTime @default(now()) // prova do consentimento (LGPD)
+  consentVersion String   @default("2026-11-01") // versão da política aceita
+  createdAt     DateTime @default(now())
+
+  @@index([date, time])
+}
+
+model SiteText {
+  key   String @id
+  value String
+}
+
+model Banner {
+  id        Int      @id @default(autoincrement())
+  title     String
+  subtitle  String?
+  imageUrl  String?
+  linkUrl   String?
+  linkLabel String?
+  active    Boolean  @default(true)
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Announcement {
+  id        Int      @id @default(autoincrement())
+  title     String
+  body      String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model PaymentMethod {
+  key          String  @id // pix | credit_card | cash | ...
+  label        String
+  enabled      Boolean @default(false)
+  instructions String  @default("")
+  sortOrder    Int     @default(0)
+}

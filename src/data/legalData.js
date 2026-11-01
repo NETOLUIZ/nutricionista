@@ -1,36 +1,47 @@
 export const privacyPolicy = {
   title: 'Política de Privacidade & Proteção de Dados de Saúde (LGPD)',
-  lastUpdated: '29 de Agosto de 2026',
+  lastUpdated: '1 de Novembro de 2026',
   sections: [
     {
-      title: '1. Compromisso com a Privacidade e Sigilo Profissional',
-      content: `O consultório de Nutrição Clínica e Funcional Juliana Martins (CRN-11) tem o compromisso inegociável de resguardar a privacidade, a confidencialidade e a segurança de todos os dados pessoais e dados sensíveis de saúde de seus pacientes e visitantes, em estrita conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei Federal nº 13.709/2018 - LGPD) e com o Código de Ética e de Conduta do Nutricionista (Resolução CFN nº 599/2018).`
+      title: '1. Quem é a controladora dos seus dados',
+      content: `A controladora dos dados tratados neste site é a nutricionista **Juliana Martins (CRN-11 9588)**, que atua em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 - LGPD) e com o Código de Ética e de Conduta do Nutricionista (Resolução CFN nº 599/2018). Canal para falar sobre seus dados: **contato@julianamartinsnutri.com.br**.`
     },
     {
-      title: '2. Dados Coletados e Finalidade Específica',
-      content: `Coletamos dados estritamente necessários para a prestação de serviços de excelência em saúde nutricional:
-- **Dados Cadastrais:** Nome completo, e-mail, telefone/WhatsApp, data de nascimento e endereço para identificação e emissão de notas fiscais.
-- **Dados Sensíveis de Saúde (Art. 11 da LGPD):** Ficha de anamnese, histórico clínico, questionários de rastreamento metabólico, neurotransmissores, exames laboratoriais, avaliações antropométricas e hábitos de vida, exclusivamente utilizados para a elaboração do diagnóstico e planejamento alimentar individualizado.
-- **Dados de Comunicação e Agendamento:** Horários, preferências e registros de suporte no canal do consultório.`
+      title: '2. Quais dados coletamos e para quê',
+      content: `Coletamos apenas o necessário para agendar e realizar o seu atendimento:
+- **Ao solicitar um agendamento no site:** nome, WhatsApp, e-mail (opcional), pacote escolhido, modalidade, data e horário, e o objetivo ou sintoma que você decidir informar (campo opcional, que pode revelar dado de saúde — informe só o que se sentir à vontade), além do registro do seu consentimento (data, hora e versão desta política).
+- **Durante o atendimento:** informações de anamnese, exames e acompanhamento, fornecidas por você na consulta, usadas exclusivamente para o planejamento nutricional.
+- **Pagamento:** registramos apenas se o atendimento está pago ou não. Este site não armazena dados de cartão.
+- **Finalidades:** agendar, confirmar e prestar o atendimento, organizar a cobrança e cumprir obrigações legais.`
     },
     {
-      title: '3. Bases Legais para Tratamento de Dados',
-      content: `O tratamento de seus dados pessoais e de saúde fundamenta-se nas seguintes hipóteses legais da LGPD:
-- **Tutela da Saúde:** Procedimentos realizados por profissional de saúde devidamente habilitado (Art. 7º, VIII e Art. 11, II, 'f').
-- **Consentimento Livre e Esclarecido:** Fornecido expressamente pelo paciente no momento do cadastro ou agendamento (Art. 7º, I e Art. 11, I).
-- **Cumprimento de Obrigação Legal e Regulatória:** Guarda de prontuários nutricionais conforme diretrizes do Conselho Federal de Nutricionistas (CFN).`
+      title: '3. Bases legais',
+      content: `O tratamento se apoia nas seguintes hipóteses da LGPD:
+- **Consentimento**, dado por você ao marcar o agendamento (Art. 7º, I e Art. 11, I), que pode ser revogado a qualquer momento.
+- **Tutela da saúde**, em procedimentos realizados por profissional de saúde (Art. 7º, VIII e Art. 11, II, 'f').
+- **Procedimentos preliminares a contrato**, a pedido do titular (Art. 7º, V).
+- **Cumprimento de obrigação legal ou regulatória**, como a guarda de registros de atendimento exigida pela regulamentação profissional (Art. 7º, II).`
     },
     {
-      title: '4. Segurança e Não Compartilhamento',
-      content: `Seus dados de saúde nunca serão comercializados, cedidos ou compartilhados com terceiros para fins publicitários. O acesso ao prontuário eletrônico é restrito à nutricionista responsável, com criptografia de ponta a ponta, backups seguros e controle de acesso rigoroso.`
+      title: '4. Com quem compartilhamos e como protegemos',
+      content: `Seus dados nunca são vendidos nem usados para publicidade de terceiros. Eles podem ser tratados por prestadores que apenas operam a infraestrutura (como a hospedagem do sistema) e pelo **WhatsApp**, quando você escolhe conversar por lá, caso em que valem os termos do próprio aplicativo.
+- **Medidas adotadas:** comunicação com o servidor por conexão segura (HTTPS), acesso à área administrativa restrito por login e senha protegida, limitação de tentativas de acesso, cópias de segurança e acesso somente da profissional responsável.
+- **Incidentes:** se houver incidente de segurança com risco relevante aos seus dados, avisaremos você e a Autoridade Nacional de Proteção de Dados (ANPD), como determina a lei.`
     },
     {
-      title: '5. Direitos do Titular dos Dados',
-      content: `Você pode, a qualquer momento:
-- Confirmar a existência de tratamento e solicitar acesso aos seus dados.
-- Requerer a correção de dados incompletos, inexatos ou desatualizados.
-- Solicitar a revogação do consentimento, com esclarecimento das implicações no acompanhamento nutricional.
-- Para exercer seus direitos, entre em contato através do e-mail oficial: **contato@julianamartinsnutri.com.br**.`
+      title: '5. Por quanto tempo guardamos',
+      content: `Mantemos os dados pelo tempo necessário para cumprir as finalidades acima. Solicitações de agendamento canceladas ou nunca confirmadas são eliminadas periodicamente. Registros de atendimento são guardados pelos prazos exigidos pela regulamentação profissional e, depois disso, eliminados ou anonimizados.`
+    },
+    {
+      title: '6. Seus direitos (Art. 18 da LGPD)',
+      content: `Você pode, a qualquer momento, solicitar:
+- Confirmação de que tratamos seus dados e acesso a eles.
+- Correção de dados incompletos, inexatos ou desatualizados.
+- Anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade.
+- Portabilidade dos dados e eliminação dos dados tratados com base no consentimento.
+- Informação sobre com quem os dados são compartilhados.
+- Informação sobre a possibilidade de não consentir e as consequências disso, e a revogação do consentimento.
+- Para exercer seus direitos, escreva para **contato@julianamartinsnutri.com.br**. Você também pode reclamar à ANPD (gov.br/anpd).`
     }
   ]
 };

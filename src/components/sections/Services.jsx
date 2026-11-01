@@ -1,9 +1,13 @@
 import React from 'react';
-import { servicesData, formatPrice } from '../../data/servicesData';
+import { formatPrice } from '../../data/servicesData';
+import { useSiteData } from '../../lib/SiteData';
 import { Calendar, Check, Star, Wallet, MapPin, Video, QrCode, CreditCard, Banknote } from 'lucide-react';
 import { SectionHeader } from '../ui/SectionHeader';
 
+const PAYMENT_ICONS = { pix: QrCode, credit_card: CreditCard, cash: Banknote };
+
 export const Services = ({ onSelectServiceForBooking }) => {
+  const { plans, texts, paymentMethods } = useSiteData();
   return (
     <section
       id="servicos"
@@ -19,8 +23,8 @@ export const Services = ({ onSelectServiceForBooking }) => {
         <SectionHeader
           icon={Wallet}
           badge="Tabela de Investimento"
-          title="Escolha o pacote ideal para você"
-          description="Planos desenhados para diferentes momentos da sua jornada nutricional — do primeiro passo ao acompanhamento completo."
+          title={texts.services_title}
+          description={texts.services_description}
           maxWidth="680px"
         />
 
@@ -33,7 +37,7 @@ export const Services = ({ onSelectServiceForBooking }) => {
             paddingTop: '8px'
           }}
         >
-          {servicesData.map((pkg) => (
+          {plans.map((pkg) => (
             <div
               key={pkg.id}
               className="card-solid"
@@ -253,11 +257,14 @@ export const Services = ({ onSelectServiceForBooking }) => {
               Formas de Pagamento
             </h3>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginBottom: '18px' }}>
-              {[
-                { label: 'Pix', icon: QrCode },
-                { label: 'Cartão', icon: CreditCard },
-                { label: 'À vista', icon: Banknote }
-              ].map((method) => {
+              {(paymentMethods
+                ? paymentMethods.map((m) => ({ label: m.label, icon: PAYMENT_ICONS[m.key] || Wallet }))
+                : [
+                    { label: 'Pix', icon: QrCode },
+                    { label: 'Cartão', icon: CreditCard },
+                    { label: 'À vista', icon: Banknote }
+                  ]
+              ).map((method) => {
                 const Icon = method.icon;
                 return (
                   <span
@@ -283,7 +290,7 @@ export const Services = ({ onSelectServiceForBooking }) => {
               })}
             </div>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-              Consulte condições de parcelamento.
+              {texts.payment_note}
             </p>
           </div>
         </div>
@@ -308,7 +315,7 @@ export const Services = ({ onSelectServiceForBooking }) => {
               lineHeight: 1.25
             }}
           >
-            Seu objetivo merece um plano feito para você.
+            {texts.services_cta_title}
           </h3>
           <p
             style={{
@@ -318,7 +325,7 @@ export const Services = ({ onSelectServiceForBooking }) => {
               marginBottom: '32px'
             }}
           >
-            Agende seu atendimento e escolha o acompanhamento ideal para você.
+            {texts.services_cta_text}
           </p>
           <button
             type="button"
