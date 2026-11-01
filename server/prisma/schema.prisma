@@ -48,6 +48,12 @@ model Appointment {
   @@index([date, time])
 }
 
+model Availability {
+  id    Int      @id @default(autoincrement())
+  date  String   @unique // YYYY-MM-DD
+  times String[] // ["09:00", "10:30", ...]
+}
+
 model SiteText {
   key   String @id
   value String

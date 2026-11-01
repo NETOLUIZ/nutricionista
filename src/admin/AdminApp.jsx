@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { CalendarDays, CreditCard, Image, KeyRound, Leaf, LogOut, Megaphone, Tag, Type } from 'lucide-react';
+import { CalendarDays, Clock, CreditCard, Image, KeyRound, Leaf, LogOut, Megaphone, Tag, Type } from 'lucide-react';
 import { api, getToken, hasApi, setToken } from '../lib/api';
 import { Button, Field, Notice, useAction } from './ui';
 import {
-  AccountPage, AnnouncementsPage, AppointmentsPage, BannersPage, PaymentsPage, PlansPage, TextsPage
+  AccountPage, AnnouncementsPage, AppointmentsPage, AvailabilityPage, BannersPage, PaymentsPage, PlansPage, TextsPage
 } from './pages';
 import './admin.css';
 
 const TABS = [
   { id: 'agendamentos', label: 'Agendamentos', icon: CalendarDays, Page: AppointmentsPage },
+  { id: 'disponibilidade', label: 'Disponibilidade', icon: Clock, Page: AvailabilityPage },
   { id: 'planos', label: 'Planos', icon: Tag, Page: PlansPage },
   { id: 'textos', label: 'Textos', icon: Type, Page: TextsPage },
   { id: 'banners', label: 'Banners', icon: Image, Page: BannersPage },

@@ -100,6 +100,35 @@ router.delete('/appointments/:id', async (req, res) => {
   } catch (e) { fail(res, e); }
 });
 
+// ---------- Disponibilidade ----------
+const isDate = (v) => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);
+const isTime = (v) => typeof v === 'string' && /^([01]\d|2[0-3]):[0-5]\d$/.test(v);
+
+router.get('/availability', async (req, res) => {
+  try {
+    res.json(await prisma.availability.findMany({ orderBy: { date: 'asc' } }));
+  } catch (e) { fail(res, e); }
+});
+
+router.post('/availability', async (req, res) => {
+  try {
+    const b = req.body || {};
+    if (!isDate(b.date)) return res.status(400).json({ error: 'Data inválida' });
+    const times = Array.isArray(b.times) ? [...new Set(b.times.filter(isTime))].sort() : [];
+    if (!times.length) return res.status(400).json({ error: 'Adicione ao menos um horário' });
+    res.status(201).json(
+      await prisma.availability.upsert({ where: { date: b.date }, update: { times }, create: { date: b.date, times } })
+    );
+  } catch (e) { fail(res, e); }
+});
+
+router.delete('/availability/:id', async (req, res) => {
+  try {
+    await prisma.availability.delete({ where: { id: id(req) } });
+    res.status(204).end();
+  } catch (e) { fail(res, e); }
+});
+
 // ---------- Planos ----------
 const planData = (b) => {
   const name = str(b.name, 80);

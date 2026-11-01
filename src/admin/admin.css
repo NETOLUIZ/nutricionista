@@ -96,8 +96,14 @@ textarea.adm-input { resize: vertical; }
 
 .adm-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
 .adm-when { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.adm-chip { display: inline-block; padding: 2px 12px; border-radius: 9999px; font-size: 0.8125rem; font-weight: 600;
+.adm-chip { display: inline-flex; align-items: center; gap: 4px; padding: 2px 12px; border-radius: 9999px; font-size: 0.8125rem; font-weight: 600;
   background: var(--a-primary-soft); color: var(--a-text); border: 1px solid var(--a-border); }
+.adm-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.adm-chip-btn { min-height: 36px; padding: 0 12px; border-radius: 9999px; border: 1px solid var(--a-border); background: var(--a-surface);
+  color: var(--a-text); font: inherit; font-size: 0.8125rem; font-weight: 600; cursor: pointer; }
+.adm-chip-btn:hover:not(:disabled) { background: var(--a-primary-soft); }
+.adm-chip-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.adm-chip-removable button { display: inline-flex; background: none; border: 0; padding: 0; margin-left: 2px; color: inherit; cursor: pointer; }
 .adm-status-PENDING { color: var(--a-warn); }
 .adm-status-CONFIRMED, .adm-status-DONE { color: var(--a-ok); }
 .adm-status-CANCELED { color: var(--a-danger); }

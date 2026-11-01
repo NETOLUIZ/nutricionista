@@ -8,8 +8,15 @@ import { Modal } from '../ui/Modal';
 
 const WEEKDAY_LABELS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 const MONTH_LABELS = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+const FALLBACK_TIMES = ['09:00', '10:30', '14:00', '15:30', '17:00', '18:15'];
 
-function getNextBusinessDays(count) {
+const dateLabel = (value) => {
+  const [year, month, day] = value.split('-').map(Number);
+  return `${WEEKDAY_LABELS[new Date(year, month - 1, day).getDay()]}, ${day}/${MONTH_LABELS[month - 1]}`;
+};
+
+// Sem servidor configurado: usa os próximos dias úteis com horários fixos, só pra demonstração
+function getFallbackAvailability(count) {
   const days = [];
   const cursor = new Date();
   cursor.setDate(cursor.getDate() + 1);
@@ -19,10 +26,7 @@ function getNextBusinessDays(count) {
       const year = cursor.getFullYear();
       const month = String(cursor.getMonth() + 1).padStart(2, '0');
       const day = String(cursor.getDate()).padStart(2, '0');
-      days.push({
-        label: `${WEEKDAY_LABELS[dayOfWeek]}, ${cursor.getDate()}/${MONTH_LABELS[cursor.getMonth()]}`,
-        value: `${year}-${month}-${day}`
-      });
+      days.push({ date: `${year}-${month}-${day}`, times: FALLBACK_TIMES });
     }
     cursor.setDate(cursor.getDate() + 1);
   }
@@ -34,9 +38,9 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
   const [step, setStep] = useState(1);
   const [selectedService, setSelectedService] = useState(initialServiceId || servicesData[0].id);
   const [modality, setModality] = useState('online'); // 'online' | 'presencial'
-  const dates = getNextBusinessDays(5);
-  const [selectedDate, setSelectedDate] = useState(dates[0].value);
-  const [selectedTime, setSelectedTime] = useState('14:00');
+  const [availability, setAvailability] = useState(null); // null = carregando; [] = nenhum dia aberto
+  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedTime, setSelectedTime] = useState('');
   const [patientData, setPatientData] = useState({
     name: '',
     whatsapp: '',
@@ -45,18 +49,30 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
     lgpdConsent: false
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [bookedTimes, setBookedTimes] = useState([]);
+
+  const loadAvailability = () => {
+    if (!hasApi) return Promise.resolve(setAvailability(getFallbackAvailability(5)));
+    return api('/api/public/availability')
+      .then(setAvailability)
+      .catch(() => setAvailability([]));
+  };
 
   useEffect(() => {
-    if (!hasApi) return;
-    let active = true;
-    api(`/api/public/booked?date=${selectedDate}`)
-      .then((list) => active && setBookedTimes(list))
-      .catch(() => active && setBookedTimes([]));
-    return () => { active = false; };
-  }, [selectedDate]);
+    if (!isOpen) return;
+    setAvailability(null);
+    loadAvailability();
+  }, [isOpen]);
 
-  const times = ['09:00', '10:30', '14:00', '15:30', '17:00', '18:15'];
+  useEffect(() => {
+    if (!availability?.length) return;
+    if (!availability.some((a) => a.date === selectedDate && a.times.includes(selectedTime))) {
+      setSelectedDate(availability[0].date);
+      setSelectedTime(availability[0].times[0]);
+    }
+  }, [availability]);
+
+  const dates = (availability || []).map((a) => ({ value: a.date, label: dateLabel(a.date) }));
+  const times = availability?.find((a) => a.date === selectedDate)?.times || [];
 
   const handleNextStep = () => {
     if (step === 3) {
@@ -96,7 +112,7 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
         .catch((error) => {
           setIsSubmitting(false);
           alert(error.message);
-          if (error.status === 409) setStep(2);
+          if (error.status === 409) { loadAvailability(); setStep(2); }
         });
     } else {
       setStep(prev => prev + 1);
@@ -259,7 +275,15 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
         )}
 
         {/* ETAPA 2: Data e Horário */}
-        {step === 2 && (
+        {step === 2 && availability === null && (
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', textAlign: 'center', padding: '24px 0' }}>Carregando horários disponíveis…</p>
+        )}
+        {step === 2 && availability?.length === 0 && (
+          <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', textAlign: 'center', padding: '24px 0' }}>
+            Nenhum horário disponível no momento. Fale pelo WhatsApp para combinarmos um horário.
+          </p>
+        )}
+        {step === 2 && availability?.length > 0 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
             <div>
               <label style={{ fontSize: '0.88rem', fontWeight: 600, color: 'var(--text-main)', display: 'block', marginBottom: '10px' }}>
@@ -298,10 +322,7 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
                     key={t}
                     type="button"
                     onClick={() => setSelectedTime(t)}
-                    disabled={bookedTimes.includes(t)}
-                    aria-label={bookedTimes.includes(t) ? `${t} indisponível` : t}
                     style={{
-                      opacity: bookedTimes.includes(t) ? 0.4 : 1,
                       padding: '12px',
                       borderRadius: '12px',
                       border: `1.5px solid ${selectedTime === t ? 'var(--secondary)' : 'var(--border-subtle)'}`,
@@ -503,7 +524,7 @@ export const BookingModal = ({ isOpen, onClose, initialServiceId }) => {
               onClick={handleNextStep}
               className="btn-primary"
               style={{ padding: '10px 24px', fontSize: '0.88rem' }}
-              disabled={isSubmitting}
+              disabled={isSubmitting || (step === 2 && !selectedTime)}
             >
               <span>{step === 3 ? (isSubmitting ? 'Agendando...' : 'Concluir Agendamento') : 'Avançar'}</span>
               <ArrowRight size={16} />

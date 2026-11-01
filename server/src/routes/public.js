@@ -52,15 +52,21 @@ router.get('/site', async (req, res) => {
   }
 });
 
-// Horários já ocupados em uma data (para desabilitar no formulário)
-router.get('/booked', async (req, res) => {
+// Dias e horários abertos pela nutricionista, menos os já ocupados
+router.get('/availability', async (req, res) => {
   try {
-    if (!isDate(req.query.date)) return res.status(400).json({ error: 'Data inválida' });
-    const rows = await prisma.appointment.findMany({
-      where: { date: req.query.date, status: { not: 'CANCELED' } },
-      select: { time: true }
+    const today = new Date().toISOString().slice(0, 10);
+    const rows = await prisma.availability.findMany({ where: { date: { gte: today } }, orderBy: { date: 'asc' } });
+    const booked = await prisma.appointment.findMany({
+      where: { date: { in: rows.map((r) => r.date) }, status: { not: 'CANCELED' } },
+      select: { date: true, time: true }
     });
-    res.json(rows.map((r) => r.time));
+    const bookedSet = new Set(booked.map((b) => `${b.date}|${b.time}`));
+    res.json(
+      rows
+        .map((r) => ({ date: r.date, times: r.times.filter((t) => !bookedSet.has(`${r.date}|${t}`)) }))
+        .filter((r) => r.times.length > 0)
+    );
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro interno' });

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { CalendarDays, Check, MessageCircle, Plus, Save, Trash2, Upload, X } from 'lucide-react';
+import { CalendarDays, Check, Clock, MessageCircle, Plus, Save, Trash2, Upload, X } from 'lucide-react';
 import { api, assetUrl } from '../lib/api';
 import { Button, Empty, Field, Notice, PageHead, Toggle, formatBRL, formatDate, useAction } from './ui';
 
@@ -88,6 +88,101 @@ export function AppointmentsPage() {
           ))}
         </ul>
       )}
+    </>
+  );
+}
+
+/* --------------------------- Disponibilidade --------------------------- */
+const SUGGESTED_TIMES = ['09:00', '10:30', '14:00', '15:30', '17:00', '18:15'];
+const todayStr = () => new Date().toISOString().slice(0, 10);
+
+function AvailabilityForm({ onSaved }) {
+  const [date, setDate] = useState(todayStr());
+  const [times, setTimes] = useState([]);
+  const [timeInput, setTimeInput] = useState('');
+  const { loading, msg, run } = useAction();
+
+  const addTime = (t) => {
+    if (!t || times.includes(t)) return;
+    setTimes((prev) => [...prev, t].sort());
+    setTimeInput('');
+  };
+  const removeTime = (t) => setTimes((prev) => prev.filter((x) => x !== t));
+
+  const save = () => run(async () => {
+    await api('/api/admin/availability', { method: 'POST', body: { date, times }, auth: true });
+    setTimes([]);
+    await onSaved();
+  }, 'Disponibilidade salva.');
+
+  return (
+    <section className="adm-card adm-form">
+      <div className="adm-grid2">
+        <Field label="Data"><input className="adm-input" type="date" min={todayStr()} value={date} onChange={(e) => setDate(e.target.value)} /></Field>
+        <Field label="Adicionar horário" hint="Digite e aperte Enter, ou use os atalhos abaixo.">
+          <input
+            className="adm-input"
+            type="time"
+            value={timeInput}
+            onChange={(e) => setTimeInput(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addTime(timeInput); } }}
+          />
+        </Field>
+      </div>
+      <div className="adm-chips">
+        {SUGGESTED_TIMES.map((t) => (
+          <button key={t} type="button" className="adm-chip-btn" onClick={() => addTime(t)} disabled={times.includes(t)}>+ {t}</button>
+        ))}
+      </div>
+      {times.length > 0 && (
+        <div className="adm-chips">
+          {times.map((t) => (
+            <span key={t} className="adm-chip adm-chip-removable">
+              <Clock size={13} aria-hidden="true" /> {t}
+              <button type="button" aria-label={`Remover ${t}`} onClick={() => removeTime(t)}><X size={13} /></button>
+            </span>
+          ))}
+        </div>
+      )}
+      <Notice type={msg?.type}>{msg?.text}</Notice>
+      <div className="adm-actions">
+        <Button icon={Save} loading={loading} disabled={!times.length} onClick={save}>Salvar disponibilidade do dia</Button>
+      </div>
+    </section>
+  );
+}
+
+export function AvailabilityPage() {
+  const [items, load, error] = useList('/api/admin/availability');
+  const { run } = useAction();
+  const remove = (a) => confirmDelete(`a disponibilidade de ${formatDate(a.date)}`) &&
+    run(async () => { await api(`/api/admin/availability/${a.id}`, { method: 'DELETE', auth: true }); await load(); });
+  const future = (items || []).filter((a) => a.date >= todayStr());
+
+  return (
+    <>
+      <PageHead title="Disponibilidade" desc="Escolha os dias e horários em que você atende. Só o que estiver aqui aparece no agendamento do site." />
+      <Notice type="error">{error}</Notice>
+      <div className="adm-stack">
+        <h3 className="adm-h3">Adicionar dia</h3>
+        <AvailabilityForm onSaved={load} />
+        {items && future.length > 0 && <h3 className="adm-h3">Dias abertos</h3>}
+        {!items ? <Empty>Carregando…</Empty> : future.length === 0 ? <Empty>Nenhum dia aberto ainda. Adicione um acima.</Empty> : (
+          <ul className="adm-list">
+            {future.map((a) => (
+              <li key={a.id} className="adm-card">
+                <div className="adm-card-top">
+                  <div className="adm-when"><CalendarDays size={18} aria-hidden="true" /><strong>{formatDate(a.date)}</strong></div>
+                  <Button icon={Trash2} variant="danger" aria-label={`Excluir disponibilidade de ${formatDate(a.date)}`} onClick={() => remove(a)}>Excluir</Button>
+                </div>
+                <div className="adm-chips">
+                  {a.times.map((t) => <span key={t} className="adm-chip"><Clock size={13} aria-hidden="true" /> {t}</span>)}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </>
   );
 }
